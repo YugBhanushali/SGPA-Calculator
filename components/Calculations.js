@@ -58,25 +58,25 @@ let inputArray = [
     {
         id: "1",
         subject: {
-            SubjectLabel: "Subject Name:",
+            SubjectLabel: "Subject Name",
             SubjectType: "text",
             SubjectValue: "",
             credits: 0,
-            CreditLabel: "Credit:",
+            CreditLabel: "Credits",
             CreditType: "number"
         },
         final:{
-            label: "Marks out of 100:",
+            label: "Marks marks ( /100)",
             type: "number",
             value: 0
         },
         internal:{
-            label: "Internal marks out of 25:",
+            label: "Internal marks ( /25)",
             type: "number",
             value: 0
         },
         midterm:{
-            label: "Midterm marks out of 50:",
+            label: "Midterm marks ( /50)",
             type: "number",
             value: 0
         },

@@ -1,6 +1,8 @@
 'use client'
 import React, { useState } from 'react'
 import { calculateMarks, calculateGrade, calculatePointers, calculateSGPA,inputArray } from './Calculations.js'
+import Image from 'next/image.js';
+import Info from './Info.js';
 
 const Field = () => {
     
@@ -12,25 +14,25 @@ const Field = () => {
         setArr([...arr, {
             id: `${arr.length + 1}`,
             subject: {
-                SubjectLabel: "Subject Name:",
+                SubjectLabel: "Subject Name",
                 SubjectType: "text",
                 SubjectValue: "",
                 credits: 0,
-                CreditLabel: "Credits:",
+                CreditLabel: "Credits",
                 CreditType: "number"
             },
             final:{
-                label: "Marks out of 100:",
+                label: "Marks marks ( /100)",
                 type: "number",
                 value: 0
             },
             internal:{
-                label: "Internal marks out of 25:",
+                label: "Internal marks ( /25)",
                 type: "number",
                 value: 0
             },
             midterm:{
-                label: "Midterm marks out of 50:",
+                label: "Midterm marks ( /50)",
                 type: "number",
                 value: 0
             },
@@ -78,9 +80,9 @@ const Field = () => {
     <div className='flex flex-col'>
         <h1 className='text-[20px] font-bold text-center'>SGPA Calculator</h1>
         {arr.map(item => (
-            <div key={item.id} className='flex text-[16px] mt-3'>
-                <div className='flex space-x-1'>
-                    <div className='w-[230px]'>
+            <div key={item.id} className='flex text-[15px] mt-3'>
+                <div className='mt-5 sm:space-x-1 flex flex-col sm:flex-row flex-1 justify-center items-center'>
+                    <div className='w-[230px] my-3'>
                         <label>{item.subject.SubjectLabel}</label>
                         <input
                             type={item.subject.SubjectType}
@@ -90,7 +92,7 @@ const Field = () => {
                             placeholder='Enter Subject Name'
                         />
                     </div>
-                    <div className='w-[230px]'>
+                    <div className='w-[230px] my-3'>
                         <label>Subject {item.subject.CreditLabel}</label>
                         <input
                             type={item.subject.CreditType}
@@ -99,8 +101,16 @@ const Field = () => {
                             name='credits'
                         />
                     </div>
-                    <div className='w-[230px]'>
-                        <label>{item.final.label}</label>
+                    <div className='w-[230px] my-3'>
+                        <label className='flex items-center space-x-0'>
+                            {item.final.label}
+                            <Info 
+                                recommendation={'This marks are round off to 50 marks'} 
+                                direction={"top"} 
+                                width={"150"}
+                                padding={1}
+                            />
+                        </label>
                         <input
                             type={item.final.type}
                             value={item.final.value}
@@ -108,7 +118,7 @@ const Field = () => {
                             name='final'
                         />
                     </div>
-                    <div className='w-[230px]'>
+                    <div className='w-[230px] my-3'>
                         <label>{item.internal.label}</label>
                         <input
                             type={item.internal.type}
@@ -117,8 +127,16 @@ const Field = () => {
                             name='internal'
                         />
                     </div>
-                    <div className='w-[230px]'>
-                        <label>{item.midterm.label}</label>
+                    <div className='w-[230px] my-3'>
+                        <label className='flex items-center'>
+                            {item.midterm.label}
+                            <Info 
+                                recommendation={'This marks are round off to 25 marks'} 
+                                direction={"top"} 
+                                width='150'
+                                padding={1}
+                            />
+                        </label>
                         <input
                             type={item.midterm.type}
                             value={item.midterm.value}
@@ -127,12 +145,12 @@ const Field = () => {
                         />
                     </div>
 
-                    <div className={`w-[100px] text-center border-[3px] border-[#31ee31]`}>
+                    <div className={`w-[100px] my-3 text-center border-[3px] border-[#31ee31]`}>
                         <label>Total</label>
                         <p>{item.total.marks}</p>
                     </div>
                     
-                    <div className='w-[100px] text-center border-[3px] border-[#31ee31]'>
+                    <div className='w-[100px] my-3 text-center border-[3px] border-[#31ee31]'>
                         <label>Grade</label>
                         <p>{item.total.grade}</p>
                     </div>
@@ -141,13 +159,18 @@ const Field = () => {
         ))}
 
         <div className='mt-6 text-[16px] flex justify-center items-center' >
-            <button className='ml-0 mr-3 border-[#4dbe31] border-2 p-1' onClick={addField}>Add Field</button>
-            <button className='border-[#e94c4c] border-2 p-1' onClick={deleteField}>Remove field</button>
+            <button className='ml-0 mr-3 border-[#4dbe31] border-2 p-1 px-3 hover:rounded-lg' onClick={addField}>Add Field</button>
+            <button className='border-[#e94c4c] border-2 p-1 px-3 hover:rounded-lg' onClick={deleteField}>Remove field</button>
+            <Info 
+                recommendation={'While entering lab marks you can add the total marks to the internal marks'} 
+                direction={"top"} 
+                width={"150"}
+                padding='1'
+            />
         </div>
         <div className=' font-extrabold text-lg my-3 flex flex-col justify-center items-center'>
             <h2>Total Credits: {
                 sgpaArr[0] === 0 ? 0 : sgpaArr[0]
-                
             }</h2>
             <h2>Your Credits: {sgpaArr[1]}</h2>
             <h2>SGPA: {
@@ -155,6 +178,7 @@ const Field = () => {
                 }
             </h2>
         </div>
+        <link type="image/png" sizes="120x120" rel="icon" href=".../icons8-github-120.png"></link>
     </div>
   )
 }
