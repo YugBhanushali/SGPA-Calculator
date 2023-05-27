@@ -14,19 +14,18 @@ export const metadata = {
     },
     {
       name: 'twitter:image',
-      content: 'https://sgpa-calculator.vercel.app/icon.png',
+      content: 'https://sgpa-calculators.vercel.app/icon.png',
     },
     { property: 'og:type', content: 'website' },
     { property: 'og:title', content: 'SGPA Calculator' },
     {
-      property: 'og:description',
-      content: 'Get your SGPA in a few clicks',
+      property: 'og:description',content: 'Get your SGPA with few clicks and calculate the SGPA with ease ',
     },
     {
       property: 'og:image',
-      content: 'https://sgpa-calculator.vercel.app/icon.png',
+      content: 'https://sgpa-calculators.vercel.app/icon.png',
     },
-    { property: 'og:url', content: 'https://sgpa-calculator.vercel.app' },
+    { property: 'og:url', content: 'https://sgpa-calculators.vercel.app' },
     { property: 'og:site_name', content: 'SGPA Calculator' },
   ],
 }
