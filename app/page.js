@@ -2,6 +2,7 @@ import Field from '@/components/Field'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Roboto_Mono } from 'next/font/google'
+import {Analytics} from '@vercel/analytics/react'
 
 const roboto_Mono = Roboto_Mono({
   weight: ['400', '700'],
@@ -22,6 +23,7 @@ export default function Home() {
           />
         </Link>
       </div>
+      <Analytics/>
     </main>
   )
 }
