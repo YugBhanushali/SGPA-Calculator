@@ -1,3 +1,5 @@
+import Courses from "@/utils/Courses";
+
 function calculateMarks(final, internalMarks, midtermMarks) {
     let totalMarks = Math.round(final/2) + parseInt(internalMarks) + Math.round(midtermMarks/2);
   return Number(totalMarks);
@@ -89,4 +91,54 @@ let inputArray = [
     }
 ];
 
-export {calculateMarks, calculateGrade, calculatePointers, calculateSGPA, inputArray}
+function arrComputer (){
+    let arr =[]
+    Courses("Computer").forEach((course, index) => {
+        arr.push({
+            id: `${index + 1}`,
+            subject: {
+                SubjectLabel: "Subject Name",
+                SubjectType: "text",
+                SubjectValue: course.name,
+                credits: course.credits,
+                CreditLabel: "Credits",
+                CreditType: "number"
+            },
+            final:{
+                label: "Marks marks ( /100)",
+                type: "number",
+                value: 0
+            },
+            internal:{
+                label: "Internal marks ( /25)",
+                type: "number",
+                value: 0
+            },
+            midterm:{
+                label: "Midterm marks ( /50)",
+                type: "number",
+                value: 0
+            },
+            total:{
+                marks: calculateMarks(0, 0, 0),
+                grade: calculateGrade(calculateMarks(0, 0, 0)),
+                pointers: calculatePointers(calculateGrade(calculateMarks(0, 0, 0))),
+                credits: 0
+            }
+        })
+    }
+    )
+    return arr;
+}
+
+function courseChecker(name){
+    if(name === "Computer"){
+        return arrComputer();
+    }
+    else{
+        return inputArray;
+    }
+}
+
+
+export {calculateMarks, calculateGrade, calculatePointers, calculateSGPA, inputArray,arrComputer, courseChecker}

@@ -1,13 +1,13 @@
 'use client'
 import React, { useState } from 'react'
-import { calculateMarks, calculateGrade, calculatePointers, calculateSGPA,inputArray } from './Calculations.js'
+import { calculateMarks, calculateGrade, calculatePointers, calculateSGPA,inputArray, courseChecker } from './Calculations.js'
 import Image from 'next/image.js';
 import Info from './Info.js';
 
-const Field = () => {
-    
-    const [arr, setArr] = useState(inputArray);
+const Field = ({course}) => {
 
+    
+    const [arr, setArr] = useState(courseChecker(course));
     const [sgpaArr, setSgpaArr] = useState([0, 0]);
 
     const addField = () => {
@@ -159,8 +159,8 @@ const Field = () => {
         ))}
 
         <div className='mt-6 text-[16px] flex justify-center items-center' >
-            <button className='ml-0 mr-3 border-[#4dbe31] border-2 p-1 px-3 hover:rounded-lg' onClick={addField}>Add Field</button>
-            <button className='border-[#e94c4c] border-2 p-1 px-3 hover:rounded-lg' onClick={deleteField}>Remove field</button>
+            <button className='ml-0 mr-3 border-[#4dbe31] border-2 p-1 px-3 hover:rounded-lg' onClick={addField}>Add Subject</button>
+            <button className='border-[#e94c4c] border-2 p-1 px-3 hover:rounded-lg' onClick={deleteField}>Remove Subject</button>
             <Info 
                 recommendation={'While entering lab marks you can add the total marks to the internal marks'} 
                 direction={"top"} 
