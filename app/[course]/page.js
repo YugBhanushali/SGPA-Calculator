@@ -6,7 +6,6 @@ import { Roboto_Mono } from 'next/font/google'
 import {Analytics} from '@vercel/analytics/react'
 import Field from '@/components/Fields'
 import { usePathname, useSearchParam } from 'next/navigation'
-import Courses from '@/utils/Courses'
 
 const roboto_Mono = Roboto_Mono({
   weight: ['400', '700'],

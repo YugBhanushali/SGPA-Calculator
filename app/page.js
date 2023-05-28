@@ -1,3 +1,4 @@
+'use client'
 import Field from '@/components/Fields'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,6 +11,7 @@ const roboto_Mono = Roboto_Mono({
 })
 
 export default function Home() {
+
   return (
     <main className={`flex p-10 ${roboto_Mono.className}`} >
       <div className='flex flex-col justify-center items-center'>

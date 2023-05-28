@@ -1,14 +1,16 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { calculateMarks, calculateGrade, calculatePointers, calculateSGPA,inputArray, courseChecker } from './Calculations.js'
 import Image from 'next/image.js';
 import Info from './Info.js';
+import { Colours,getColour } from './Calculations.js';
+
 
 const Field = ({course}) => {
 
-    
     const [arr, setArr] = useState(courseChecker(course));
     const [sgpaArr, setSgpaArr] = useState([0, 0]);
+    const [colourChecker, setColourChecker] = useState(Colours[0]);
 
     const addField = () => {
         setArr([...arr, {
@@ -39,7 +41,8 @@ const Field = ({course}) => {
             total:{
                 marks: calculateMarks(0, 0, 0),
                 grade: calculateGrade(calculateMarks(0, 0, 0)),
-                credits: 0
+                credits: 0,
+                colour: Colours[4]
             }
         }])
     }
@@ -70,12 +73,32 @@ const Field = ({course}) => {
             item.total.marks = calculateMarks(item.final.value, item.internal.value, item.midterm.value);
             item.total.grade = calculateGrade(item.total.marks);
             item.total.pointers = calculatePointers(item.total.grade);
+            item.total.colour = getColour(item.total.grade);
             return item;
         }
         )
         setArr(updatedArr);
         setSgpaArr(calculateSGPA(arr));
     }
+
+    useEffect(() => {
+        if((sgpaArr[1]/sgpaArr[0]*10) >= 9){
+            setColourChecker(Colours[0]);
+        }
+        else if((sgpaArr[1]/sgpaArr[0]*10) >= 8){
+            setColourChecker(Colours[1]);
+        }
+        else if((sgpaArr[1]/sgpaArr[0]*10) >= 7){
+            setColourChecker(Colours[2]);
+        }
+        else if((sgpaArr[1]/sgpaArr[0]*10) >= 6){
+            setColourChecker(Colours[3]);
+        }
+        else{
+            setColourChecker(Colours[4]);
+        }
+    }, [colourChecker, sgpaArr])
+
   return (
     <div className='flex flex-col'>
         <h1 className='text-[20px] font-bold text-center'>SGPA Calculator</h1>
@@ -145,12 +168,12 @@ const Field = ({course}) => {
                         />
                     </div>
 
-                    <div className={`w-[100px] my-3 text-center border-[3px] border-[#31ee31]`}>
+                    <div style={{borderColor:item.total.colour,borderWidth:'3px'}} className={`w-[100px] font-extrabold my-3 text-center border-[3px]`}>
                         <label>Total</label>
                         <p>{item.total.marks}</p>
                     </div>
                     
-                    <div className='w-[100px] my-3 text-center border-[3px] border-[#31ee31]'>
+                    <div style={{borderColor:item.total.colour,borderWidth:'3px'}} className='w-[100px] font-extrabold my-3 text-center border-[3px] border-[#4b74dc]'>
                         <label>Grade</label>
                         <p>{item.total.grade}</p>
                     </div>
@@ -173,7 +196,7 @@ const Field = ({course}) => {
                 sgpaArr[0] === 0 ? 0 : sgpaArr[0]
             }</h2>
             <h2>Your Credits: {sgpaArr[1]}</h2>
-            <h2>SGPA: {
+            <h2 style={{borderColor:colourChecker,borderWidth:'3px'}} className=' px-3'>SGPA: {
                     sgpaArr[0] === 0 ? 0 : sgpaArr[1]/sgpaArr[0]*10
                 }
             </h2>

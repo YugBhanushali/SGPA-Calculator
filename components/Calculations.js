@@ -5,6 +5,8 @@ function calculateMarks(final, internalMarks, midtermMarks) {
   return Number(totalMarks);
 }
 
+const Colours =["#31ee31","#e8e234","#e9832a","#4b74dc","#de3939"];
+
 function calculateGrade(totalMarks) {
     let grade = '';
     if (totalMarks >= 80) {
@@ -86,7 +88,8 @@ let inputArray = [
             marks: calculateMarks(0, 0, 0),
             grade: calculateGrade(calculateMarks(0, 0, 0)),
             pointers: calculatePointers(calculateGrade(calculateMarks(0, 0, 0))),
-            credits: 0
+            credits: 0,
+            colour: Colours[4]
         }
     }
 ];
@@ -96,7 +99,7 @@ function arrComputer (){
     Courses("Computer").forEach((course, index) => {
         arr.push({
             id: `${index + 1}`,
-            subject: {
+            subject: { 
                 SubjectLabel: "Subject Name",
                 SubjectType: "text",
                 SubjectValue: course.name,
@@ -140,5 +143,22 @@ function courseChecker(name){
     }
 }
 
+function getColour(Grade){
+    let colour = '';
+    if (Grade === 'O') {
+        colour = Colours[0];
+    } else if (Grade === 'A+') {
+        colour = Colours[1];
+    } else if (Grade === 'A') {
+        colour = Colours[2];
+    } else if (Grade === 'B+') {
+        colour = Colours[3];
+    } else {
+        colour = Colours[4];
+    }
 
-export {calculateMarks, calculateGrade, calculatePointers, calculateSGPA, inputArray,arrComputer, courseChecker}
+    return colour;
+}
+
+
+export {calculateMarks, calculateGrade, calculatePointers, calculateSGPA, inputArray,arrComputer, courseChecker, Colours, getColour}
