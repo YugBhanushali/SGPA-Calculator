@@ -26,7 +26,7 @@ const Info = ({recommendation, direction,width,padding}) => {
       />
 
     {showMessage && (
-        <div className={`absolute ${direction}-full left-1/2 transform  w-[150px] -translate-x-1/2 bg-[#f5f5f5] border-[0.5px] border-solid border-[black] p-${padding} rounded-lg shadow-lg`}>
+        <div className={`absolute ${direction}-full left-1/2 transform  w-[150px] -translate-x-1/2 bg-[#f5f5f5] border-[0.5px] border-solid border-[black] px-[8px] py-[3px] rounded-lg shadow-lg`}>
             <p className='text-[14px]'>{recommendation}</p>
         </div>
     )}

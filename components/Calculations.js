@@ -126,7 +126,8 @@ function arrComputer (){
                 marks: calculateMarks(0, 0, 0),
                 grade: calculateGrade(calculateMarks(0, 0, 0)),
                 pointers: calculatePointers(calculateGrade(calculateMarks(0, 0, 0))),
-                credits: 0
+                credits: 0,
+                colour: Colours[4]
             }
         })
     }

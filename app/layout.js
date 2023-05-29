@@ -36,7 +36,9 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/icon.png" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   )
 }

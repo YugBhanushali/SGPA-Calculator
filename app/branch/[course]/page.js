@@ -4,8 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Roboto_Mono } from 'next/font/google'
 import {Analytics} from '@vercel/analytics/react'
-import Field from '@/components/Fields'
 import { usePathname, useSearchParam } from 'next/navigation'
+import Field from '@/components/Fields'
 
 const roboto_Mono = Roboto_Mono({
   weight: ['400', '700'],
@@ -14,7 +14,8 @@ const roboto_Mono = Roboto_Mono({
 
 export default function Home() {
     const pathName = usePathname()
-    const course = pathName.split('/')[1]
+    console.log(pathName);
+    const course = pathName.split('/')[2]
   return (
     <main className={`flex p-10 ${roboto_Mono.className}`} >
       <div className='flex flex-col justify-center items-center'>

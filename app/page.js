@@ -1,9 +1,9 @@
 'use client'
+
 import Field from '@/components/Fields'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Roboto_Mono } from 'next/font/google'
-import {Analytics} from '@vercel/analytics/react'
 
 const roboto_Mono = Roboto_Mono({
   weight: ['400', '700'],
@@ -13,9 +13,12 @@ const roboto_Mono = Roboto_Mono({
 export default function Home() {
 
   return (
-    <main className={`flex p-10 ${roboto_Mono.className}`} >
+    <div className={`flex p-10 ${roboto_Mono.className}`} >
       <div className='flex flex-col justify-center items-center'>
         <Field />
+        <Link href={"/branch"}>
+          <h1 className='font-bold'>Branch</h1>
+        </Link>
         <Link href={'https://github.com/YugBhanushali/SGPA-Calculator'}>
           <Image 
             src='/assets/github-logo.png'
@@ -25,7 +28,6 @@ export default function Home() {
           />
         </Link>
       </div>
-      <Analytics/>
-    </main>
+    </div>
   )
 }

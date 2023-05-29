@@ -4,6 +4,7 @@ import { calculateMarks, calculateGrade, calculatePointers, calculateSGPA,inputA
 import Image from 'next/image.js';
 import Info from './Info.js';
 import { Colours,getColour } from './Calculations.js';
+import Navbar from './Navbar.js';
 
 
 const Field = ({course}) => {
@@ -74,6 +75,7 @@ const Field = ({course}) => {
             item.total.grade = calculateGrade(item.total.marks);
             item.total.pointers = calculatePointers(item.total.grade);
             item.total.colour = getColour(item.total.grade);
+            item.total.credits = item.subject.credits * item.total.pointers;
             return item;
         }
         )
@@ -97,11 +99,12 @@ const Field = ({course}) => {
         else{
             setColourChecker(Colours[4]);
         }
+        console.log(arr);
     }, [colourChecker, sgpaArr])
 
   return (
-    <div className='flex flex-col'>
-        <h1 className='text-[20px] font-bold text-center'>SGPA Calculator</h1>
+    <div id='pdf' className='flex flex-col'>
+        <Navbar />
         {arr.map(item => (
             <div key={item.id} className='flex text-[15px] mt-3'>
                 <div className='mt-5 sm:space-x-1 flex flex-col sm:flex-row flex-1 justify-center items-center'>
@@ -112,7 +115,7 @@ const Field = ({course}) => {
                             value={item.subject.SubjectValue}
                             onChange={(e) => handleChange(e, item.id)}
                             name='SubjectValue'
-                            placeholder='Enter Subject Name'
+                            placeholder='Data Structures'
                         />
                     </div>
                     <div className='w-[230px] my-3'>
@@ -188,7 +191,7 @@ const Field = ({course}) => {
                 recommendation={'While entering lab marks you can add the total marks to the internal marks'} 
                 direction={"top"} 
                 width={"150"}
-                padding='1'
+                padding={"10px"}
             />
         </div>
         <div className=' font-extrabold text-lg my-3 flex flex-col justify-center items-center'>
@@ -196,7 +199,7 @@ const Field = ({course}) => {
                 sgpaArr[0] === 0 ? 0 : sgpaArr[0]
             }</h2>
             <h2>Your Credits: {sgpaArr[1]}</h2>
-            <h2 style={{borderColor:colourChecker,borderWidth:'3px'}} className=' px-3'>SGPA: {
+            <h2 style={{borderColor:colourChecker,borderWidth:'3px'}} className='mt-3 px-3'>SGPA: {
                     sgpaArr[0] === 0 ? 0 : sgpaArr[1]/sgpaArr[0]*10
                 }
             </h2>
