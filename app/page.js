@@ -27,6 +27,9 @@ export default function Home() {
             height={30}
           />
         </Link>
+        <Link href={"mailto:yug.bce21@sot.pdpu.ac.in"}>
+          <h1 className='font-bold hover:underline'>Feedback</h1>
+        </Link>
       </div>
     </div>
   )
